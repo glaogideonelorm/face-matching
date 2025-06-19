@@ -1,12 +1,12 @@
 # Face Matching CLI Tool
 
-A command-line tool that compares student photos from two folders (WEAC vs. UG) and scores each pair on a scale of 1-10, flagging low-confidence matches.
+A command-line tool that compares student photos from two folders  and scores each pair on a scale of 1-10, flagging low-confidence matches.
 
 ## Features
 
 - **Automated Face Matching**: Uses `face_recognition` library with dlib for robust face detection and encoding
-- **Similarity Scoring**: Computes cosine similarity between face encodings and maps to 1-10 rating scale
-- **Error Handling**: Exits gracefully with specific error codes for no face/multiple faces detection
+
+
 - **Excel Output**: Generates detailed reports in `.xlsx` format
 - **Progress Tracking**: Shows progress bar during processing
 - **Duplicate Detection**: Warns about duplicate keys in source folders
@@ -19,59 +19,6 @@ A command-line tool that compares student photos from two folders (WEAC vs. UG) 
 - CMake (required for dlib compilation)
 - Visual Studio Build Tools (Windows) or build-essential (Linux)
 
-### macOS Installation
-
-```bash
-# Install system dependencies
-brew install cmake
-
-# Clone/setup the project
-cd face-matching
-
-# Create and activate virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install Python dependencies
-pip install -r requirements.txt
-```
-
-### Linux Installation
-
-```bash
-# Install system dependencies
-sudo apt-get update
-sudo apt-get install build-essential cmake python3-dev
-
-# Create and activate virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install Python dependencies
-pip install -r requirements.txt
-```
-
-### Windows Installation
-
-```bash
-# Install Visual Studio Build Tools first
-# Then create and activate virtual environment
-python -m venv venv
-venv\Scripts\activate
-
-# Install Python dependencies
-pip install -r requirements.txt
-```
-
-**Note**: Always activate the virtual environment before using the tool:
-
-```bash
-# macOS/Linux
-source venv/bin/activate
-
-# Windows
-venv\Scripts\activate
-```
 
 ## Usage
 
@@ -107,16 +54,12 @@ python match_faces.py --weac ./data/weac_photos --ug ./data/ug_photos --out ./re
 
 ### 2. Folder Scanning
 
-- Builds maps of `{key → filepath}` for both WEAC and UG folders
+
 - Supports: `.jpg`, `.jpeg`, `.png`, `.bmp`, `.tiff`
 
 ### 3. Face Detection & Encoding
 
-- Detects faces in each image using `face_recognition`
-- Generates 128-dimensional face embeddings with dlib
-- **Exits with error if**:
-  - No face detected (exit code 1)
-  - Multiple faces detected (exit code 2)
+
 
 ### 4. Similarity Computation
 
@@ -161,30 +104,6 @@ python match_faces.py --weac ./data/weac_photos --ug ./data/ug_photos --out ./re
 
 ## Troubleshooting
 
-### Installation Issues
-
-1. **dlib compilation fails**: Install CMake and build tools
-
-   ```bash
-   # macOS
-   brew install cmake
-
-   # Linux
-   sudo apt-get install build-essential cmake python3-dev
-   ```
-
-2. **face_recognition install fails**: Update pip and try `pip install --upgrade face_recognition`
-
-3. **"externally-managed-environment" error**: Create and use a virtual environment (required for modern Python)
-
-4. **Memory errors**: Process smaller batches or increase system RAM
-
-### Runtime Issues
-
-1. **"No face detected"**: Check image quality and face visibility
-2. **"Multiple faces detected"**: Crop images to single person
-3. **Low similarity scores**: Verify images are of the same person
-4. **Virtual environment not activated**: Run `source venv/bin/activate` (macOS/Linux) or `venv\Scripts\activate` (Windows)
 
 ## License
 
